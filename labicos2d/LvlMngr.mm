@@ -14,8 +14,8 @@
 
 @synthesize CurrentLevel;
 
-static int const kTileWidth = 40;
-static int const kTileHeight = 40;
+static int const kTileWidth = 20;
+static int const kTileHeight = 20;
 
 #pragma mark -
 #pragma mark init
@@ -48,6 +48,16 @@ static LvlMngr *_Instance = NULL;
 
 - (void) loadLevel:(NSInteger)lvlNumber intoLayer:(CCLayer *)layer withBox2DBody:(b2World*)_World 
   withTileFromFile:(NSString *)tileFilename {
+	
+	// get dimension from tile
+	CCSprite *tmpSprite = [CCSprite spriteWithFile:@"box-003.png"];
+//	float tileWidth = tmpSprite.contentSize.width;
+//	float tileHeight = tmpSprite.contentSize.height;
+	float tileWidth = [tmpSprite texture].contentSize.width;
+	float tileHeight = [tmpSprite texture].contentSize.height;
+	float halfWidth = tileWidth * 0.5f;
+	float halfHeight = tileHeight * 0.5f;
+	
 	// read level definition from plist file
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"level-%03d", lvlNumber] ofType:@"plist"];
 	NSDictionary *lvlConfig = [NSDictionary dictionaryWithContentsOfFile:plistPath];
@@ -59,11 +69,13 @@ static LvlMngr *_Instance = NULL;
 		NSArray *cols = [item componentsSeparatedByString:@"\t"];
 		
 		for (NSString *col in cols) {
+			float posX = (tileWidth * colIdx) - tileWidth;
+			float posY = (tileHeight * rowIdx) - tileHeight;
+			
+			CCLOG(@"tile: posX=%f posY=%f", posX, posY);
+			
 			if ([col isEqualToString:@"1"]) {
-				float posX = (kTileWidth * colIdx) - kTileWidth * 0.5;
-				float posY = (kTileHeight * rowIdx) - kTileHeight * 0.5;
-				
-				CCSprite *tile = [CCSprite spriteWithFile:@"box-002.png"];
+				CCSprite *tile = [CCSprite spriteWithFile:@"box-003.png"];
 				tile.position = CGPointMake(posX, posY);
 				
 				[layer addChild:tile];
@@ -74,7 +86,7 @@ static LvlMngr *_Instance = NULL;
 				b2Body *boxBody = _World->CreateBody(&boxBodyDef);
 				
 				b2PolygonShape polygonShape;
-				polygonShape.SetAsBox(tile.contentSize.width * 0.5 / PTM_RATIO, tile.contentSize.height * 0.5 / PTM_RATIO);
+				polygonShape.SetAsBox(halfWidth / PTM_RATIO, halfHeight / PTM_RATIO);
 				
 				b2FixtureDef polygonShapeDef;
 				polygonShapeDef.shape = &polygonShape;
@@ -82,6 +94,24 @@ static LvlMngr *_Instance = NULL;
 				polygonShapeDef.restitution = 0.2f;
 				
 				boxBody->CreateFixture(&polygonShapeDef);
+			}
+			else if ([col isEqualToString:@"0"]) {
+				CCSprite *tile = [CCSprite spriteWithFile:@"ground-001.png"];
+				tile.position = CGPointMake(posX, posY);
+				
+				[layer addChild:tile];
+			}
+			else if ([col isEqualToString:@"7"]) {
+				CCSprite *tileGround = [CCSprite spriteWithFile:@"ground-001.png"];
+				tileGround.position = CGPointMake(posX, posY);
+				
+				[layer addChild:tileGround z:0];
+				
+				
+				CCSprite *tileHole = [CCSprite spriteWithFile:@"hole-001.png"];
+				tileHole.position = CGPointMake(posX, posY);
+				
+				[layer addChild:tileHole z:1];
 			}
 			
 			colIdx++;

@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>LvlDescription</key>
+	<array>
+		<string>1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1</string>
+		<string>1	0	7	7	7	0	1	0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	1</string>
+		<string>1	0	7	9	7	0	1	0	0	0	1	1	1	1	0	0	0	0	1	7	1	0	0	1</string>
+		<string>1	0	7	0	7	0	0	0	0	0	0	0	0	0	0	7	0	0	0	0	0	0	0	1</string>
+		<string>1	0	0	0	0	0	0	0	1	1	0	0	0	0	0	0	0	0	1	0	1	1	1	1</string>
+		<string>1	0	7	0	7	1	0	0	0	7	0	0	0	7	0	0	0	0	1	0	0	0	0	1</string>
+		<string>1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	7	1	0	0	0	0	1</string>
+		<string>1	0	1	1	1	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	1</string>
+		<string>1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	1	0	0	1</string>
+		<string>1	0	0	0	0	7	0	7	0	0	1	0	0	7	0	0	1	0	0	0	1	0	7	1</string>
+		<string>1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	7	7	1	0	0	1</string>
+		<string>1	0	0	0	0	0	0	7	0	0	1	0	0	0	0	0	1	1	1	1	1	7	0	1</string>
+		<string>1	0	1	1	1	0	0	0	0	0	1	0	0	7	0	0	0	0	0	0	1	0	0	1</string>
+		<string>1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	7	1</string>
+		<string>1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	5	1</string>
+		<string>1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1</string>
+	</array>
+</dict>
 </plist>
